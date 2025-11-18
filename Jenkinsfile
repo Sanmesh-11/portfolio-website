@@ -14,17 +14,13 @@ pipeline {
                 echo "Static website - no build required."
             }
         }
-stage('Deploy') {
-    steps {
-        echo "Deploying website to Deploy folder..."
 
-        bat """
-        if not exist "C:\\Users\\Student\\Desktop\\Portfolio\\Deploy" 
-mkdir "C:\\Users\\Student\\Desktop\\Portfolio\\Deploy"
-        xcopy /E /I /Y . "C:\\Users\\Student\\Desktop\\Portfolio\\Deploy\\"
-        """
-    }
-}
+        stage('Deploy') {
+            steps {
+                echo "Deploying website to Deploy folder..."
+                bat 'if not exist "C:\\Users\\Student\\Desktop\\Portfolio\\Deploy" mkdir "C:\\Users\\Student\\Desktop\\Portfolio\\Deploy" && xcopy /E /I /Y * "C:\\Users\\Student\\Desktop\\Portfolio\\Deploy\\"'
+            }
+        }
     }
 
     post {
