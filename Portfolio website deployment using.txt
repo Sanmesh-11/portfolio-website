@@ -1,0 +1,5 @@
+Portfolio website deployment using Jenkins pipeline 
+a)Develop a two page personal portfolio website using html css 
+b)Initialize Git locally and Push website code to GitHub
+c) Create a Jenkins Pipeline to build and deploy the project  automatically
+d) Configure a webhook in GitHub to trigger the jenkons pipeline on every code push
