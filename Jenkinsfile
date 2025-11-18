@@ -11,25 +11,28 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo "Static website - no build step required."
+                echo "Static website - no build required."
             }
         }
+stage('Deploy') {
+    steps {
+        echo "Deploying website to Deploy folder..."
 
-        stage('Deploy') {
-            steps {
-                echo "Deploying website to IIS folder..."
-
-                // Copy all website files to deployment directory
-                bat """
-                xcopy /E /Y * "C:\\inetpub\\wwwroot\\portfolio-website"
-                """
-            }
-        }
+        bat """
+        if not exist "C:\\Users\\Student\\Desktop\\Portfolio\\Deploy" 
+mkdir "C:\\Users\\Student\\Desktop\\Portfolio\\Deploy"
+        xcopy /E /I /Y . "C:\\Users\\Student\\Desktop\\Portfolio\\Deploy\\"
+        """
+    }
+}
     }
 
     post {
         success {
-            echo "Deployment Successful!"
+            echo "✔ Deployment Successful!"
+        }
+        failure {
+            echo "✖ Deployment Failed!"
         }
     }
 }
